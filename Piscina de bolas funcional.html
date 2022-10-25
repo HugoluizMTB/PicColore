@@ -3,9 +3,9 @@
 <html>
 <head>
 	<title>Cadastro de Clientes</title>
-	<script src="/script.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="container">
@@ -31,18 +31,17 @@
 					<option value="70">70 minutos</option>
 				</select>
 			</div>
-			<button onclick="clicou()" type="button" class="btn btn-primary">Liberar Entrada</button>
+			<button class="btn btn-primary">Liberar Entrada</button>
 		</form>
 		<div class="table-responsive">
 			<table class="table" id="tabela">
 				<thead>
 					<tr>
-						<th>Nº</th>
 						<th>Nome</th>
 						<th>CPF</th>
 						<th>Nome da Criança</th>
 						<th>Tempo Desejado</th>
-						<th>Contador</th>
+						<th>Hora de entrada</th>
 						<th>Ações</th>
 					</tr>
 				</thead>
@@ -52,5 +51,6 @@
 			</table>
 		</div>
 	</div>
+	<script src="/script.js"></script>
 </body>
 </html>
