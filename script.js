@@ -24,7 +24,7 @@ function submitClient(e) {
 			<td>${nomeCrianca}</td>
 			<td>${tempoDesejado}</td>
 			<td>${horaEntrada}</td>
-			<td><button class="deleteBtn">Remover</button></td>
+			<td><button class="btn btn-danger deleteBtn">Remover</button></td>
 		</tr>
 	`
 	document.querySelector('form').reset()	
