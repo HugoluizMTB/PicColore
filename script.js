@@ -14,7 +14,7 @@ function submitClient(e) {
 	let hora = horaEntrada.getHours()
 	horaEntrada = `${hora}:${minuto}`
 
-	if (nome.value == "" || cpf.value == "" || nomeCrianca.value == "" || tempoDesejado.value == "") {
+	if (nome == "" || cpf == "" || nomeCrianca == "" || tempoDesejado == "") {
 		window.alert('Campos Vazios!')
 	} else {
 		tbodyEl.innerHTML += `
