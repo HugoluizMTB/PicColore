@@ -43,10 +43,10 @@ const FullTable = () => {
 
   const handleDeleteClick = (costumerId: any) => {
     axios.post('http://localhost:3000/client', {
-      responsibleFullName: addFormData.responsibleFullName,
-      childName: addFormData.childName,
-      responsibleCPF: addFormData.responsibleCPF,
-      responsiblePhoneNumber: addFormData.responsiblePhoneNumber
+      responsible_full_Name: addFormData.responsibleFullName,
+      child_name: addFormData.childName,
+      responsible_cpf: addFormData.responsibleCPF,
+      responsible_cellphone_number: addFormData.responsiblePhoneNumber
     })
     .then(function (response) {
       console.log(response);

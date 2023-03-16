@@ -1,5 +1,5 @@
 import express from 'express'
-import clients from '../controllers/index.controller.js'
+import clients from '../controller/index.controller.js'
 
 const routes = express.Router()
 const eventConfigURL = "eventConfig";

@@ -4,7 +4,6 @@ import database from '../db.js';
 const Client = database.define('client', {
     client_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true
     },
@@ -24,6 +23,9 @@ const Client = database.define('client', {
         type: Sequelize.STRING,
         allowNull: false
     }
+}, {
+    underscored: true,
+    primaryKey: 'client_id', 
 })
 
 export default Client

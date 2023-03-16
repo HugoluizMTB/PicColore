@@ -1,12 +1,12 @@
 import express from "express";
-import routes from "./src/routes/index.routes.js"
-import db from "./src/db.js"
-import cors from "cors"; // reparar a importação do cors
+import routes from "./src/router/index.routes.js";
+import db from "./src/db.js";
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 const corsOptions = {
-  origin: "http://127.0.0.1:5173/"
+  origin: "*"
 }
 
 app.use(express.json());
@@ -17,5 +17,10 @@ app.listen(port, () => {
   console.log(`Servidor iniciado no port ${port}`);
 });
 
-db.sync(console.log(`Banco de dados sincronizado: ${process.env.DB_NAME}`));
+db.sync()
+  .then(() => {console.log(`Banco de dados sincronizado: ${process.env.DB_NAME}`)})
+  .catch(err => console.error('Error creating table clients', err))
+
+
+
 
