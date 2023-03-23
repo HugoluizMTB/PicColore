@@ -1,10 +1,12 @@
 import { ValidationErrorItem } from "sequelize";
-import ClientTable from "../model/client.model.js"
+import Client from "../model/client.model.js";
+import User from "../model/user.model.js"
+import Event from "../model/event.model.js"
 
 async function findAll(req, res) {
   try {
 
-    const clients = await ClientTable.findAll();
+    const clients = await Client.findAll();
     res.status(200).json(clients);
 
   } catch (error) {
@@ -17,14 +19,14 @@ async function findAll(req, res) {
 
 async function addClient(req, res) {
   try {
-    const {responsible_full_name, child_name, responsible_cpf, responsible_cellphone_number } = req.body
+    const {client_full_name, client_cpf, client_phone_number, client_visits } = req.body
 
 
-    const client = await ClientTable.create({
-      responsible_full_name,
-      child_name,
-      responsible_cpf,
-      responsible_cellphone_number 
+    const client = await Client.create({
+      client_full_name,
+      client_cpf,
+      client_phone_number,
+      client_visits 
     })
       .then((result) => res.status(201).json(result));
 

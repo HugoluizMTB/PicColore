@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "./src/router/index.routes.js";
-import db from "./src/db.js";
+import connection from "./src/database/connection.js";
 import cors from "cors";
 
 const app = express();
@@ -17,9 +17,9 @@ app.listen(port, () => {
   console.log(`Servidor iniciado no port ${port}`);
 });
 
-db.sync()
+connection.sync()
   .then(() => {console.log(`Banco de dados sincronizado: ${process.env.DB_NAME}`)})
-  .catch(err => console.error('Error creating table clients', err))
+  .catch(err => console.error('Erro ao sincronizar com banco de dados', err))
 
 
 

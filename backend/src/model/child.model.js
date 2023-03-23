@@ -1,0 +1,26 @@
+import Sequelize from 'sequelize';
+import database from '../database/connection.js';
+import Client from './client.model.js'
+
+const Children = database.define('children', {
+    child_id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        allowNull: false,
+        unique: true
+    },
+    child_full_name: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+    child_entry_time: {
+        type: Sequelize.DATE,
+        allowNull: false
+    }
+}, {
+    underscored: true,
+    freezeTableName: true
+})
+
+export default Children
