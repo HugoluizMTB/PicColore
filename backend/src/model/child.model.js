@@ -1,6 +1,5 @@
 import Sequelize from 'sequelize';
 import database from '../database/connection.js';
-import Client from './client.model.js'
 
 const Children = database.define('children', {
     child_id: {
@@ -22,5 +21,6 @@ const Children = database.define('children', {
     underscored: true,
     freezeTableName: true
 })
+
 
 export default Children

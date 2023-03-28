@@ -16,10 +16,6 @@ const Active_client = database.define('active_client', {
     client_id: {
         type: Sequelize.UUID,
         allowNull: false
-    },
-    event_config_id: {
-        type: Sequelize.UUID,
-        allowNull: false
     }
 }, {
     underscored: true 
