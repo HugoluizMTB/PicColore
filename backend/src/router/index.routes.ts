@@ -3,10 +3,10 @@ import clients from '../controller/index.controller.js'
 import Controllers from '../controller/index.controller.js'
 
 const routes = express.Router()
-const eventURL = "event";
-const clientURL = "client";
+const eventURL = "event"
+const clientURL = "client"
 const active_clientURL = "active-client"
-const childURL = "child"
+const childURL = "child-entry"
 const logURL = "log"
 const transactionURL = "transaction"
 const userURL = "user"
@@ -17,7 +17,15 @@ routes.post(`/${loginURL}`, Controllers.loginUser)
 routes.post(`/${userURL}`, Controllers.addUser)
 routes.get(`/${userURL}`, Controllers.findAllUsers)
 
-routes.get(`/${active_clientURL}`, Controllers.findAllActiveClients)
+routes.get(`/${active_clientURL}`, Controllers.getAllActiveClients)
+
+routes.post(`/${childURL}`, Controllers.addChild);
+
+routes.post(`/${clientURL}`, clients.addClient);
+routes.get(`/${clientURL}`, clients.findAllClients);
+routes.get(`/client-search-cpf`, clients.getClientByCPF);
+
+// ROTAS AINDA NÃO UTILIZADAS //
 
 // Rotas Active_Client //
 
@@ -33,9 +41,6 @@ routes.delete(`/${active_clientURL}`, (req, res) => {
 
 // Rotas Child //
 
-routes.post(`/${childURL}`, (req, res) => {
-    res.send({ msg: "Rota post child funcionando" });
-});
 routes.get(`/${childURL}`, (req, res) => {
     res.send({ msg: "Rota get child funcionando" });
 });
@@ -48,8 +53,6 @@ routes.delete(`/${childURL}`, (req, res) => {
 
 // Rotas Client //
 
-routes.post(`/${clientURL}`, clients.addClient);
-routes.get(`/${clientURL}`, clients.findAllClients);
 routes.put(`/${clientURL}`, (req, res) => {
     res.send({ msg: "Rota put client funcionando" });
 });
