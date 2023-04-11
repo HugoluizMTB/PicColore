@@ -12,7 +12,7 @@ const Client = database.define('client', {
         allowNull: false,
         unique: true
     },
-    client_full_name: {
+    client_fullname: {
         type: Sequelize.STRING,
         allowNull: false
     },

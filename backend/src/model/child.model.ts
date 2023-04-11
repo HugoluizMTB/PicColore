@@ -9,7 +9,7 @@ const Children = database.define('children', {
         allowNull: false,
         unique: true
     },
-    child_full_name: {
+    child_fullname: {
         type: Sequelize.STRING(100),
         allowNull: false
     },
