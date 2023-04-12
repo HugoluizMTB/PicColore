@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
-import database from '../database/connection.js';
-import Transactions from './transaction.model.js';
-import Active_client from './active_client.model.js';
+import database from '../database/connection';
+import Transactions from './transaction.model';
+import Active_client from './active_client.model';
 import Log from './log.model.js'
 
 const User = database.define('user', {
@@ -23,6 +23,14 @@ const User = database.define('user', {
     user_fullname: {
         type: Sequelize.STRING(100),
         allowNull: false
+    },
+    user_phone_number: {
+        type: Sequelize.STRING(13),
+        allowNull: true
+    },
+    user_email: {
+        type: Sequelize.STRING(100),
+        allowNull: true
     },
     user_admin: {
         type: Sequelize.BOOLEAN,

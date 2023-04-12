@@ -1,6 +1,7 @@
-import Client from "../model/client.model.js";
+import Client from "../model/client.model";
+import { Request, Response } from "express";
 
-async function getClientByCPF(req, res) {
+async function getClientByCPF(req: Request, res: Response) {
     try {
       const body = req.body
       const findClient = await Client.findOne({ where:{ client_cpf: body.client_cpf }});

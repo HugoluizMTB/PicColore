@@ -1,6 +1,7 @@
-import Active_client from "../model/active_client.model.js";
+import Active_client from "../model/active_client.model";
+import { Request, Response } from "express";
 
-export const getAllActiveClients = async (req, res) => {
+export const getAllActiveClients = async (req: Request, res: Response) => {
     try {
       const body = req.body
       const activeClients = await Active_client.findAll({ where: { event_id: body.event_id } })

@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import database from '../database/connection.js';
+import database from '../database/connection';
 
 const Log = database.define('log', {
     log_id: {

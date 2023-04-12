@@ -1,13 +1,13 @@
-import loginUser from "./auth.controller.js";
-import addClient from "./addClient.controller.js"
-import getAllActiveClients from "./activeClient.controller.js";
-import addChild from "./addChild.controller.js";
-import getClientByCPF from "./getClientByCPF.controller.js";
+import { Request, Response } from "express";
+import loginUser from "./auth.controller";
+import addClient from "./addClient.controller"
+import addChild from "./addChild.controller";
+import getClientByCPF from "./getClientByCPF.controller";
 
-import User from "../model/user.model.js";
-import Client from "../model/client.model.js";
+import User from "../model/user.model";
+import Client from "../model/client.model";
 
-async function findAllUsers(req, res) {
+async function findAllUsers(req: Request, res: Response) {
   try {
     const user = await User.findAll();
     res.status(200).json(user);
@@ -17,7 +17,7 @@ async function findAllUsers(req, res) {
   }
 }
 
-async function findAllClients(req, res) {
+async function findAllClients(req: Request, res: Response) {
   try {
     const clients = await Client.findAll();
     res.status(200).json(clients);
@@ -29,7 +29,7 @@ async function findAllClients(req, res) {
 
 
 
-async function addUser(req, res) {
+async function addUser(req: Request, res: Response) {
   try {
     const { user_login, user_password, user_fullname, user_admin, user_supervisor } = req.body
     const user = await User.create({
@@ -54,7 +54,6 @@ export default
     addUser,
     addClient,
     loginUser,
-    getAllActiveClients,
     addChild,
     getClientByCPF
   }

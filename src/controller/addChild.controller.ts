@@ -1,7 +1,8 @@
-import Children from "../model/child.model.js"
-import Client from "../model/client.model.js"
+import Children from "../model/child.model"
+import Client from "../model/client.model"
+import { Request, Response } from "express";
 
-async function addChild(req, res) {
+async function addChild(req: Request, res: Response) {
     try {
         const body = req.body
         const { child_full_name, child_entry_time, client_id } = body

@@ -1,6 +1,6 @@
 import express from 'express'
-import clients from '../controller/index.controller.js'
-import Controllers from '../controller/index.controller.js'
+import clients from '../controller/index.controller'
+import Controllers from '../controller/index.controller'
 
 const routes = express.Router()
 const eventURL = "event"
@@ -17,7 +17,7 @@ routes.post(`/${loginURL}`, Controllers.loginUser)
 routes.post(`/${userURL}`, Controllers.addUser)
 routes.get(`/${userURL}`, Controllers.findAllUsers)
 
-routes.get(`/${active_clientURL}`, Controllers.getAllActiveClients)
+// routes.get(`/${active_clientURL}`, Controllers.getAllActiveClients)
 
 routes.post(`/${childURL}`, Controllers.addChild);
 

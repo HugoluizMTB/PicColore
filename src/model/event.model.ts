@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
-import database from '../database/connection.js';
-import Active_client from './active_client.model.js';
-import Transactions from './transaction.model.js';
+import database from '../database/connection';
+import Active_client from './active_client.model';
+import Transactions from './transaction.model';
 
 const Event = database.define('event', {
     event_id: {

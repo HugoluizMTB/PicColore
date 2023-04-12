@@ -1,6 +1,7 @@
-import User from "../model/user.model.js";
+import User from "../model/user.model";
+import { Request, Response } from "express";
 
-async function loginUser(req, res) {
+async function loginUser(req: Request, res: Response) {
     try {
       const body = req.body
       const login = await User.findOne({ where: {

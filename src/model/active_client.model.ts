@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import database from '../database/connection.js';
+import database from '../database/connection';
 
 const Active_client = database.define('active_client', {
     active_client_id: {
