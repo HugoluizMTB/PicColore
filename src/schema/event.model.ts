@@ -18,15 +18,6 @@ const Event = database.define('event', {
     event_prices: {
         type: Sequelize.FLOAT,
         allowNull: false
-    },
-    event_username: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-        unique: true
-    },
-    event_password: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
     }
 }, {
     underscored: true
