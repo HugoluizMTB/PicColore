@@ -11,12 +11,64 @@ const Event = database.define('event', {
         allowNull: false,
         unique: true
     },
+    event_name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     event_address: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    event_prices: {
+    event_status: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+    },
+    event_is_freetime_active: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+    },
+    event_freetime_price: {
         type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    event_courtesy: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    event_price_1: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    event_time_1: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    event_price_2: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    event_time_2: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    event_price_3: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    event_time_3: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    event_price_4: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    event_time_4: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    event_additional_minute: {
+        type: Sequelize. INTEGER,
         allowNull: false
     }
 }, {
