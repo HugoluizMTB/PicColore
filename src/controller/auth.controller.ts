@@ -1,12 +1,13 @@
-import User from "../model/user.model";
+import User from "../schema/user.model";
 import { Request, Response } from "express";
 
-async function loginUser(req: Request, res: Response) {
+const loginUser = async (req: Request, res: Response) => {
     try {
       const body = req.body
+      const { user_email, user_password } = body
       const login = await User.findOne({ where: {
-        user_login: body.user_login,
-        user_password: body.user_password 
+        user_login: user_email,
+        user_password: user_password 
     }})
       if (!login) {
         res.send({ msg: "Usuário ou senha incorreta" })
@@ -19,4 +20,6 @@ async function loginUser(req: Request, res: Response) {
     }
   }
 
-export default loginUser
+export {
+  loginUser
+}

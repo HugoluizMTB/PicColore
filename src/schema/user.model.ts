@@ -11,10 +11,9 @@ const User = database.define('user', {
         primaryKey: true,
         unique: true
     },
-    user_login: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-        unique: true
+    user_email: {
+        type: Sequelize.STRING(100),
+        allowNull: true
     },
     user_password: {
         type: Sequelize.STRING(50),
@@ -26,10 +25,6 @@ const User = database.define('user', {
     },
     user_phone_number: {
         type: Sequelize.STRING(13),
-        allowNull: true
-    },
-    user_email: {
-        type: Sequelize.STRING(100),
         allowNull: true
     },
     user_admin: {
