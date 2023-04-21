@@ -53,11 +53,11 @@ const createEvent = async (req: Request, res: Response) => {
 
 const getAllEvents = async (req: Request, res: Response) => {
     try {
-      const getAllEvents = await Event.findAll()
-      if (!getAllEvents) {
+      const AllEvents = await Event.findAll()
+      if (!AllEvents) {
         res.status(200).send({ msg: "Nenhum evento encontrado" })
       } else {
-        res.status(200).json(getAllEvents)
+        res.status(200).json(AllEvents)
       }
     } catch (error) {
       console.log(error);
@@ -107,7 +107,8 @@ const updateEvent = async (req: Request, res: Response) => {
         event_time_4,
         event_additional_minute
       }, { where: { event_id } });
-      res.status(201).send(updateEvent);
+      const UpdatedEvent = await Event.findOne({ where: { event_id } });
+      res.status(200).send(UpdatedEvent);
     }
   } catch (error) {
     console.log(error);
@@ -121,9 +122,9 @@ const destroyEvent = async (req: Request, res: Response) => {
     const { event_id } = body
     const destroyedEvent = await Event.destroy({ where: { event_id } })
     if (!destroyedEvent) {
-      res.status(200).send({ msg: "Nenhum Cliente Ativo!" })
+      res.status(204).send({ msg: "Nenhum Evento encontrado!" })
     } else {
-      res.status(200).json(destroyedEvent)
+      res.status(204).json(destroyedEvent)
     }
   } catch (error) {
     console.log(error);

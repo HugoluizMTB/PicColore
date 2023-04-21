@@ -4,13 +4,14 @@ import { Request, Response } from "express";
 const createLog = async (req: Request, res: Response) => {
   try {
     const body = req.body;
-    const { is_event_open, user_id_entry, user_id_closing } = body;
-    const createLog = await Log.create({
+    const { is_event_open, event_id, user_id_entry, user_id_closing } = body;
+    const createdLog = await Log.create({
         is_event_open,
+        event_id,
         user_id_entry, 
         user_id_closing
     });
-    res.status(201).send({ createLog });
+    res.status(201).send({ createdLog });
   } catch (error) {
     console.log(error);
     res.status(500).send({ msg: "Não foi possível completar a requisição" });
@@ -19,12 +20,30 @@ const createLog = async (req: Request, res: Response) => {
 
 const getAllLogs = async (req: Request, res: Response) => {
   try {
-    const logs = await Log.findAll();
-    if (!logs) {
+    const allLogs = await Log.findAll();
+    if (!allLogs) {
       res.status(200).send({ msg: "Nenhum log encontrado" });
     } else {
-      res.status(200).json(logs);
+      res.status(200).send(allLogs);
     }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ msg: "Não foi possível completar a requisição" });
+  }
+};
+
+const updateLog = async (req: Request, res: Response) => {
+  try {
+    const body = req.body;
+    const { log_id, is_event_open, event_id, user_id_entry, user_id_closing } = body;
+    const updateLog = await Log.update({
+        is_event_open,
+        event_id,
+        user_id_entry, 
+        user_id_closing
+    }, { where: { log_id } });
+    const updatedLog = await Log.findOne({ where: { log_id } })
+    res.status(200).send({ updatedLog });
   } catch (error) {
     console.log(error);
     res.status(500).send({ msg: "Não foi possível completar a requisição" });
@@ -33,23 +52,19 @@ const getAllLogs = async (req: Request, res: Response) => {
 
 const destroyLog = async (req: Request, res: Response) => {
   try {
-    const body = req.body;
-    const { log_id } = body;
-    const checkIfLogExists = await Log.findOne({ where: { log_id } })
-    if (checkIfLogExists) {
-      const destroyLog = await Log.destroy({ where: { log_id } })
-      res.status(204).send(destroyLog);
-    } else {
-      res.status(404).json({ msg: "Log não existe" });
-    }
-  } catch (error) {
+    const body = req.body
+    const { log_id } = body
+    const destroyedLog = await Log.destroy({ where: { log_id } })
+    res.status(204).json(destroyedLog);
+} catch (error) {
     console.log(error);
-    res.status(500).send({ msg: "Não foi possível completar a requisição" });
-  }
+    res.status(500).send({msg: "Não foi possível completar a requisição" })
+}
 };
 
 export { 
     createLog, 
     getAllLogs,
+    updateLog,
     destroyLog
 };

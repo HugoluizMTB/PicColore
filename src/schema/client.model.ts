@@ -18,7 +18,8 @@ const Client = database.define('client', {
     },
     client_cpf: {
         type: Sequelize.CHAR(11),
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     client_phone_number: {
         type: Sequelize.STRING(13),

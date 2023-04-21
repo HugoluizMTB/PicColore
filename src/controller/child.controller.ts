@@ -5,14 +5,13 @@ import { Request, Response } from "express";
 const createChild = async (req: Request, res: Response) => {
     try {
         const body = req.body
-        const { child_full_name, child_entry_time, client_id } = body
+        const { child_fullname, client_id } = body
         const findClientId = await ClientService.checkIfClientExistsByID(client_id)
         if (!findClientId) {
             res.status(406).send({ msg: "Cliente não encontrado" })
         } else {
             const createChild = await Children.create({
-                child_full_name,
-                child_entry_time,
+                child_fullname,
                 client_id
             })
             res.status(201).send(createChild)
@@ -27,11 +26,11 @@ const getAllChildrensFromClient = async (req: Request, res: Response) => {
     try {
         const body = req.body
         const { client_id } = body
-        const findClientId = await Children.findAll({ where: { client_id } })
-        if (!findClientId) {
+        const childrenFromClient = await Children.findAll({ where: { client_id } })
+        if (!childrenFromClient) {
             res.status(406).send({ msg: "Cliente não encontrado" })
         } else {
-            res.status(200).send(createChild)
+            res.status(200).send(childrenFromClient)
         }
     } catch (error) {
         console.log(error);
@@ -39,7 +38,7 @@ const getAllChildrensFromClient = async (req: Request, res: Response) => {
     }
 }
 
-const deleteChild = async (req: Request, res: Response) => {
+const destroyChild = async (req: Request, res: Response) => {
     try {
       const body = req.body
       const { child_id } = body
@@ -59,5 +58,5 @@ const deleteChild = async (req: Request, res: Response) => {
 export {
     createChild,
     getAllChildrensFromClient,
-    deleteChild
+    destroyChild
 }

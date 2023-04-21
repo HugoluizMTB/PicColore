@@ -5,7 +5,6 @@ import * as EventController from './event.controller'
 import * as LogController from './log.controller'
 import * as TransactionController from './transaction.controller'
 import * as UserController from './user.controller'
-import * as AuthController from './auth.controller'
 
 export {
   ActiveClientController,
@@ -14,6 +13,5 @@ export {
   EventController,
   LogController,
   TransactionController,
-  UserController,
-  AuthController
+  UserController
 }

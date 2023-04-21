@@ -38,7 +38,7 @@ const updateUser = async (req: Request, res: Response) => {
     try {
       const body = req.body
       const { user_id, user_email, user_password, user_fullname, user_phone_number, user_admin, user_supervisor } = body
-      const updatedUser = await User.update({
+      const updateUser = await User.update({
         user_email,
         user_password,
         user_fullname,
@@ -46,7 +46,8 @@ const updateUser = async (req: Request, res: Response) => {
         user_admin,
         user_supervisor
       }, { where: { user_id } })
-        res.status(201).json(updatedUser);
+      const findUpdatedUser = await User.findOne({ where: { user_id } });
+      res.status(201).json(findUpdatedUser);
     } catch (error) {
       console.log(error);
       res.status(500).send({msg: "Não foi possível completar a requisição" })

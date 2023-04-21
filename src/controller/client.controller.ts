@@ -50,6 +50,7 @@ const destroyClientByCPF = async (req: Request, res: Response) => {
       res.send({ msg: "Cliente não encontrado"})
     } else {
       const getClient = await Client.findOne({ where: { client_cpf } })
+      const destroyClient = await Client.destroy({ where: { client_cpf } })
       res.status(204).json(getClient)
     }
   } catch (error) {

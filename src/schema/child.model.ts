@@ -12,10 +12,6 @@ const Children = database.define('children', {
     child_fullname: {
         type: Sequelize.STRING(100),
         allowNull: false
-    },
-    child_entry_time: {
-        type: Sequelize.DATE,
-        allowNull: false
     }
 }, {
     underscored: true,

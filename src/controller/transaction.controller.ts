@@ -40,15 +40,10 @@ const getAllTransactions = async (req: Request, res: Response) => {
 
 const destroyTransaction = async (req: Request, res: Response) => {
   try {
-    const body = req.body;
-    const { transaction_id } = body;
-    const checkIfTransactionExists = await Transaction.findOne({ where: { transaction_id } })
-    if (checkIfTransactionExists) {
-      const destroyTransaction = await Transaction.destroy({ where: { transaction_id } })
-      res.status(204).send(destroyTransaction);
-    } else {
-      res.status(404).json({ msg: "Transação não existe" });
-    }
+    const body = req.body
+    const { transaction_id } = body
+    const destroyedTransaction = await Transaction.destroy({ where: { transaction_id } })
+    res.status(204).json(destroyedTransaction);
   } catch (error) {
     console.log(error);
     res.status(500).send({ msg: "Não foi possível completar a requisição" });

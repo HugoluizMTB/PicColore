@@ -2,6 +2,7 @@ import Sequelize from 'sequelize';
 import database from '../database/connection';
 import Active_client from './active_client.model';
 import Transactions from './transaction.model';
+import Log from './log.model';
 
 const Event = database.define('event', {
     event_id: {
@@ -68,7 +69,7 @@ const Event = database.define('event', {
         allowNull: true
     },
     event_additional_minute: {
-        type: Sequelize. INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 }, {
@@ -80,6 +81,10 @@ Event.hasMany(Active_client, {
 })
 
 Event.hasMany(Transactions, {
+    foreignKey: "event_id"
+})
+
+Event.hasMany(Log, {
     foreignKey: "event_id"
 })
 
