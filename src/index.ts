@@ -21,6 +21,6 @@ app.listen(port, () => {
 });
 
 connection
-  .sync({ force:true })
+  .sync()
   .then(() => {console.log(`Banco de dados sincronizado: ${process.env.DB_NAME}`)})
   .catch((err) => console.error('Erro ao sincronizar com banco de dados', err));
