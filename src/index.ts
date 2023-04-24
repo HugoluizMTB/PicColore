@@ -1,26 +1,26 @@
 import express from "express";
-import routes from "./router/index.routes";
+import routers from "./router/index.routes";
 import connection from "./database/connection";
 import cors from "cors";
+import * as dotenv from 'dotenv'
 
+dotenv.config()
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
+const environment = process.env.NODE_ENV
 const corsOptions = {
-  origin: "*"
-}
+  origin: "*",
+};
 
 app.use(express.json());
-app.use(routes);
+app.use('/api', routers);
 app.use(cors(corsOptions));
 
 app.listen(port, () => {
-  console.log(`Servidor iniciado no port ${port}`);
+  console.log(`Servidor iniciado na porta ${port} no ambiente ${environment}`);
 });
 
-connection.sync()
+connection
+  .sync({ force:true })
   .then(() => {console.log(`Banco de dados sincronizado: ${process.env.DB_NAME}`)})
-  .catch(err => console.error('Erro ao sincronizar com banco de dados', err))
-
-
-
-
+  .catch((err) => console.error('Erro ao sincronizar com banco de dados', err));
