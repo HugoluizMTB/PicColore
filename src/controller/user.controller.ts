@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import User from "../schema/user.model";
+import User from "../schema/user.schema";
+import jwt from 'jsonwebtoken';
+import * as dotenv from 'dotenv';
 
 const createUser = async (req: Request, res: Response) => {
   try {
@@ -19,6 +21,28 @@ const createUser = async (req: Request, res: Response) => {
     res.status(500).send({ msg: "Não foi possível completar a requisição" })
   }
 }
+
+dotenv.config();
+const tokenSecret = process.env.JWT_KEY || "456321";
+const loginUser = async (req: Request, res: Response) => {
+  try {
+    const { user_email, user_password } = req.body;
+    const checkUsernameAndPassword = await User.findOne({
+      where: { user_email, user_password },
+    });
+    if (!checkUsernameAndPassword) {
+      res.status(401).send({ msg: "Email ou senha incorreta" });
+    } else {
+      const token = jwt.sign({ user_email: user_email }, tokenSecret, {
+        expiresIn: "1h",
+      });
+      res.status(200).send({ token, checkUsernameAndPassword });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ msg: "Não foi possível completar a requisição" });
+  }
+};
 
 const getAllUsers = async (req: Request, res: Response) => {
   try {
@@ -70,5 +94,6 @@ export{
     getAllUsers,
     createUser,
     updateUser,
-    destroyUser
+    destroyUser,
+    loginUser
 }

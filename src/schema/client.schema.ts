@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
-import database from '../database/connection';
-import Children from './child.model';
-import Active_client from './active_client.model'
-import Transactions from './transaction.model'
+import database from '../config/database/connection';
+import Children from './child.schema';
+import Active_client from './active_client.schema'
+import Transactions from './transaction.schema'
 
 const Client = database.define('client', {
     client_id: {

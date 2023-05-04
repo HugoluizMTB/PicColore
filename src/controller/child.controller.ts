@@ -1,4 +1,4 @@
-import Children from "../schema/child.model"
+import Children from "../schema/child.schema"
 import { ClientService } from "../service/index.service";
 import { Request, Response } from "express";
 

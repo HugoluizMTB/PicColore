@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
-import database from '../database/connection';
-import Active_client from './active_client.model';
-import Transactions from './transaction.model';
-import Log from './log.model';
+import database from '../config/database/connection';
+import Active_client from './active_client.schema';
+import Transactions from './transaction.schema';
+import Log from './log.schema';
 
 const Event = database.define('event', {
     event_id: {

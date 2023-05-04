@@ -1,4 +1,4 @@
-import Active_client from "../schema/active_client.model";
+import Active_client from "../schema/active_client.schema";
 import { Request, Response } from "express";
 import { ClientService } from "../service/index.service";
 

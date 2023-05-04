@@ -1,4 +1,4 @@
-import Event from "../schema/event.model";
+import Event from "../schema/event.schema";
 import { Request, Response } from "express";
 import { EventService } from "../service/index.service";
 

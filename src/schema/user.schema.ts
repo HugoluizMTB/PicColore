@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
-import database from '../database/connection';
-import Transactions from './transaction.model';
-import Active_client from './active_client.model';
-import Log from './log.model.js'
+import database from '../config/database/connection';
+import Transactions from './transaction.schema';
+import Active_client from './active_client.schema';
+import Log from './log.schema'
 
 const User = database.define('user', {
     user_id: {
