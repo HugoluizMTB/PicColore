@@ -6,14 +6,15 @@ import * as dotenv from 'dotenv';
 const createUser = async (req: Request, res: Response) => {
   try {
     const body = req.body
-    const { user_email, user_password, user_fullname, user_phone_number, user_admin, user_supervisor } = body
+    const { user_email, user_password, user_fullname, user_phone_number, user_admin, user_supervisor, event_id } = body
     const createdUser = await User.create({
       user_email,
       user_password,
       user_fullname,
       user_phone_number,
       user_admin,
-      user_supervisor
+      user_supervisor,
+      event_id
     })
       res.status(201).json(createdUser);
   } catch (error) {
@@ -61,14 +62,15 @@ const getAllUsers = async (req: Request, res: Response) => {
 const updateUser = async (req: Request, res: Response) => {
     try {
       const body = req.body
-      const { user_id, user_email, user_password, user_fullname, user_phone_number, user_admin, user_supervisor } = body
+      const { user_id, user_email, user_password, user_fullname, user_phone_number, user_admin, user_supervisor, event_id } = body
       const updateUser = await User.update({
         user_email,
         user_password,
         user_fullname,
         user_phone_number,
         user_admin,
-        user_supervisor
+        user_supervisor,
+        event_id
       }, { where: { user_id } })
       const findUpdatedUser = await User.findOne({ where: { user_id } });
       res.status(201).json(findUpdatedUser);

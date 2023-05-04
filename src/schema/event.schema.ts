@@ -3,6 +3,7 @@ import database from '../config/database/connection';
 import Active_client from './active_client.schema';
 import Transactions from './transaction.schema';
 import Log from './log.schema';
+import User from './user.schema'
 
 const Event = database.define('event', {
     event_id: {
@@ -88,4 +89,7 @@ Event.hasMany(Log, {
     foreignKey: "event_id"
 })
 
+Event.hasMany(User, {
+    foreignKey: "event_id"
+})
 export default Event
