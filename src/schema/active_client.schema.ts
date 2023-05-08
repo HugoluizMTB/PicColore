@@ -1,24 +1,28 @@
-import Sequelize from 'sequelize';
-import database from '../config/database/connection';
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database/connection";
 
-const Active_client = database.define('active_client', {
+const Active_client = sequelize.define(
+  "active_client",
+  {
     active_client_id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        primaryKey: true,
-        allowNull: false,
-        unique: true
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull: false,
+      unique: true,
     },
     user_id: {
-        type: Sequelize.UUID,
-        allowNull: false
+      type: DataTypes.UUID,
+      allowNull: false,
     },
     client_id: {
-        type: Sequelize.UUID,
-        allowNull: false
-    }
-}, {
-    underscored: true 
-})
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+  },
+  {
+    underscored: true,
+  }
+);
 
-export default Active_client
+export default Active_client;

@@ -1,35 +1,39 @@
-import Sequelize from 'sequelize';
-import database from '../config/database/connection';
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database/connection";
 
-const Transaction = database.define('transaction', {
+const Transaction = sequelize.define(
+  "transaction",
+  {
     transaction_id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        primaryKey: true,
-        unique: true
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      unique: true,
     },
     transaction_value: {
-        type: Sequelize.FLOAT,
-        allowNull: false
+      type: DataTypes.FLOAT,
+      allowNull: false,
     },
     payment_method: {
-        type: Sequelize.CHAR(1),
-        allowNull: false
+      type: DataTypes.CHAR(1),
+      allowNull: false,
     },
     event_id: {
-        type: Sequelize.UUID,
-        allowNull: false
+      type: DataTypes.UUID,
+      allowNull: false,
     },
     user_id: {
-        type: Sequelize.UUID,
-        allowNull: false
+      type: DataTypes.UUID,
+      allowNull: false,
     },
     client_id: {
-        type: Sequelize.UUID,
-        allowNull: false
-    }
-}, {
-    underscored: true
-})
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+  },
+  {
+    underscored: true,
+  }
+);
 
-export default Transaction
+export default Transaction;
