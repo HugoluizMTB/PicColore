@@ -28,6 +28,7 @@ export interface CustomRequest extends Request {
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
 //mudança no codigo
+// outra mudança
   try {
 
       let token: any;
