@@ -12,10 +12,17 @@ export const createClientService = async (client: any) => {
 
 export const getClientByCPFService = async (client: any) => {
   const getClient = await Client.findOne({ where: client });
+  if (!getClient) {
+    return { msg: "Cliente não encontrado" }
+  }
   return getClient;
 };
 
 export const destroyClientByCpfService = async (client: any) => {
+  const findClient = await Client.findOne({ where: client });
+  if (!findClient) {
+    return { msg: "Cliente não encontrado" }
+  }
   const destroyClient = await Client.destroy({ where: client });
   return { msg: "Cliente excluído" };
 };
