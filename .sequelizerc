@@ -1,0 +1,7 @@
+import { resolve } from "path";
+
+export default {
+  "seeders-path": resolve("src/seeders"),
+  "migrations-path": resolve("src/migrations"),
+  config: resolve("src/config/config.js"),
+};

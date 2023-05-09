@@ -1,4 +1,4 @@
-import Transaction from "../schema/transaction.model";
+import Transaction from "../schema/transaction.schema";
 import { Request, Response } from "express";
 
 const createTransaction = async (req: Request, res: Response) => {

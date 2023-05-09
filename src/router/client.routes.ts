@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { ClientController } from '../controller/index.controller'
+import { authenticateToken } from "../service/auth.service";
 
 const clientRouter = Router()
 
-clientRouter.post('/client', [], ClientController.createClient)
-clientRouter.get('/client', [], ClientController.getClientByCPF)
-clientRouter.delete('/client', [], ClientController.destroyClientByCPF)
+clientRouter.post('/client', [authenticateToken], ClientController.createClient)
+clientRouter.get('/client', [authenticateToken], ClientController.getClientByCPF)
+clientRouter.delete('/client', [authenticateToken], ClientController.destroyClientByCPF)
 
 export { clientRouter }

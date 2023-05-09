@@ -1,4 +1,4 @@
-import Log from "../schema/log.model";
+import Log from "../schema/log.schema";
 import { Request, Response } from "express";
 
 const createLog = async (req: Request, res: Response) => {

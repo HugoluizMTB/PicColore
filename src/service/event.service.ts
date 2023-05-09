@@ -1,4 +1,4 @@
-import Event from '../schema/event.model'
+import Event from '../schema/event.schema'
 
 export const isEventNameAndAddressAvailable = async (event_name: string, event_address: string) =>  {
     const checkName = await Event.findOne({ where: { event_name: event_name } })

@@ -1,17 +1,17 @@
-import Active_client from "../schema/active_client.model";
+import Active_client from "../schema/active_client.schema";
 import { Request, Response } from "express";
 import { ClientService } from "../service/index.service";
 
 const createActiveClient = async (req: Request, res: Response) => {
     try {
       const body = req.body
-      const { user_id, client_id, active_client_id } = body
+      const { user_id, client_id, event_id } = body
       const checkIfClientIsActive = await ClientService.checkIfClientIsActive(client_id)
       if (!checkIfClientIsActive) {
         const createActiveClient = await Active_client.create({ 
           user_id,
           client_id,
-          active_client_id
+          event_id
          })
         res.send({ createActiveClient })
       } else {

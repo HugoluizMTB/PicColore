@@ -1,6 +1,6 @@
 import express from "express";
 import routers from "./router/index.routes";
-import connection from "./database/connection";
+import sequelize from "./config/database/connection";
 import cors from "cors";
 import * as dotenv from 'dotenv'
 
@@ -20,7 +20,7 @@ app.listen(port, () => {
   console.log(`Servidor iniciado na porta ${port} no ambiente ${environment}`);
 });
 
-connection
-  .sync({ force:true })
-  .then(() => {console.log(`Banco de dados sincronizado: ${process.env.DB_NAME}`)})
+sequelize
+  .sync()
+  .then(() => {console.log(`Banco de dados sincronizado: ${process.env.POSTGRES_DATABASE}`)})
   .catch((err) => console.error('Erro ao sincronizar com banco de dados', err));

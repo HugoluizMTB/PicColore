@@ -1,5 +1,5 @@
-import Active_client from '../schema/active_client.model'
-import Client from '../schema/client.model'
+import Active_client from '../schema/active_client.schema'
+import Client from '../schema/client.schema'
 
 export const checkIfClientIsActive = async (client_id: string) =>  {
     return await Active_client.findOne({ where: { client_id: client_id } })
