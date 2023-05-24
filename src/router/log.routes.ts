@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { LogController } from '../controller/index.controller'
-import { authenticateToken } from "../service/auth.service";
+import { LogController } from "../controller/index.controller";
+import { authenticate } from "../service/auth.service";
 
-const logRouter = Router()
+const logRouter = Router();
 
-logRouter.post('/log', [authenticateToken], LogController.createLog)
-logRouter.get('/log', [authenticateToken], LogController.getAllLogs)
-logRouter.put('/log', [authenticateToken], LogController.updateLog)
-logRouter.delete('/log', [authenticateToken], LogController.destroyLog)
+logRouter.post("/log", [authenticate], LogController.createLog);
+logRouter.get("/log", [authenticate], LogController.getAllLogs);
+logRouter.put("/log", [authenticate], LogController.updateLog);
+logRouter.delete("/log", [authenticate], LogController.destroyLog);
 
-export { logRouter }
+export { logRouter };

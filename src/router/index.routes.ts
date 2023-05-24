@@ -6,17 +6,19 @@ import { eventRouter } from "./event.routes";
 import { clientRouter } from "./client.routes";
 import { childRouter } from "./child.routes";
 import { activeClientRouter } from "./activeClient.routes";
+import { authRouter } from "./auth.routes";
 
 const routers = Router();
 
-routers.use("/v1",
+routers.use(
   userRouter,
   transactionRouter,
   logRouter,
   eventRouter,
   clientRouter,
   childRouter,
-  activeClientRouter
+  activeClientRouter,
+  authRouter
 );
 
 export default routers;

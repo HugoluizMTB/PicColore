@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { EventController } from '../controller/index.controller'
-import { authenticateToken } from "../service/auth.service";
+import { EventController } from "../controller/index.controller";
+import { authenticate } from "../service/auth.service";
 
-const eventRouter = Router()
+const eventRouter = Router();
 
-eventRouter.post('/event', [authenticateToken], EventController.createEvent)
-eventRouter.get('/event', [authenticateToken], EventController.getAllEvents)
-eventRouter.put('/event', [authenticateToken], EventController.updateEvent)
-eventRouter.delete('/event', [authenticateToken], EventController.destroyEvent)
+eventRouter.post("/event", [authenticate], EventController.createEvent);
+eventRouter.get("/event", [authenticate], EventController.getAllEvents);
+eventRouter.put("/event", [authenticate], EventController.updateEvent);
+eventRouter.delete("/event", [authenticate], EventController.destroyEvent);
 
-export { eventRouter }
+export { eventRouter };

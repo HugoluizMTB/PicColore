@@ -1,11 +1,15 @@
 import { Router } from "express";
-import { ChildController } from '../controller/index.controller'
-import { authenticateToken } from "../service/auth.service";
+import { ChildController } from "../controller/index.controller";
+import { authenticate } from "../service/auth.service";
 
-const childRouter = Router()
+const childRouter = Router();
 
-childRouter.post('/child', [authenticateToken], ChildController.createChild)
-childRouter.get('/child', [authenticateToken], ChildController.getAllChildrensFromClient)
-childRouter.delete('/child', [authenticateToken], ChildController.destroyChild)
+childRouter.post("/child", [authenticate], ChildController.createChild);
+childRouter.get(
+  "/child",
+  [authenticate],
+  ChildController.getAllChildrensFromClient
+);
+childRouter.delete("/child", [authenticate], ChildController.destroyChild);
 
-export { childRouter }
+export { childRouter };
