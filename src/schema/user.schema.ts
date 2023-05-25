@@ -7,35 +7,59 @@ import Log from "./log.schema";
 const User = sequelize.define(
   "user",
   {
-    user_id: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       unique: true,
     },
-    user_email: {
+    email: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: {
+          msg: "E-mail inválido.",
+        },
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: "Senha do usuário para logar no sistema.",
+    },
+    salt: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: "Salt de de senha do usuário.",
+    },
+    name: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      comment: "Nome completo do usuário.",
+    },
+    social_name: {
       type: DataTypes.STRING(100),
       allowNull: true,
+      comment: "Nome social do usuário.",
     },
-    user_password: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
-    user_fullname: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
-    user_phone_number: {
+    phone_number: {
       type: DataTypes.STRING(13),
-      allowNull: true,
-    },
-    user_admin: {
-      type: DataTypes.BOOLEAN,
       allowNull: false,
+      comment: "Número de telefone do usuário.",
     },
-    user_supervisor: {
-      type: DataTypes.BOOLEAN,
+    role: {
+      type: DataTypes.ENUM,
+      values: ["Admin", "Supervisor", "Operator", "System"],
+      defaultValue: "Supervisor",
       allowNull: false,
+      comment: "Permissões do sistema.",
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false,
+      comment: "Status do usuário no sistema.",
     },
   },
   {

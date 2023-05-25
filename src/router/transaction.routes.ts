@@ -1,11 +1,23 @@
 import { Router } from "express";
-import { TransactionController } from '../controller/index.controller'
-import { authenticateToken } from "../service/auth.service";
+import { TransactionController } from "../controller/index.controller";
+import { authenticate } from "../service/auth.service";
 
-const transactionRouter = Router()
+const transactionRouter = Router();
 
-transactionRouter.post('/transaction', [authenticateToken], TransactionController.createTransaction)
-transactionRouter.get('/transaction', [authenticateToken], TransactionController.getAllTransactions)
-transactionRouter.delete('/transaction', [authenticateToken], TransactionController.destroyTransaction)
+transactionRouter.post(
+  "/transaction",
+  [authenticate],
+  TransactionController.createTransaction
+);
+transactionRouter.get(
+  "/transaction",
+  [authenticate],
+  TransactionController.getAllTransactions
+);
+transactionRouter.delete(
+  "/transaction",
+  [authenticate],
+  TransactionController.destroyTransaction
+);
 
-export { transactionRouter }
+export { transactionRouter };
