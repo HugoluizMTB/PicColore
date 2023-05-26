@@ -81,4 +81,4 @@ npm run dev
 
 ## Contato
 
-- E-mail:
+- E-mail: mtmmeasuretomanage@gmail.com
