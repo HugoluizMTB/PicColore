@@ -4,7 +4,7 @@ A API em desenvolvimento tem como objetivo atender um cliente que organiza event
 
 [![Language](https://img.shields.io/badge/Language-TypeScript-blue.svg)](#)
 [![Database](https://img.shields.io/badge/Database-PostgreSQL-blue.svg)](#)
-[![Architecture](https://img.shields.io/badge/Architecture-Node.js-blue.svg)](#)
+[![Architecture](https://img.shields.io/badge/Architecture-Node.js-green.svg)](#)
 [![Cloud](https://img.shields.io/badge/Cloud-Docker-blue.svg)](#)
 ![Issues](https://img.shields.io/github/issues-raw/HugoluizMTB/PicColore.svg)
 
