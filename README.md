@@ -13,7 +13,7 @@ A API em desenvolvimento tem como objetivo atender um cliente que organiza event
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
 - [Instalação](#instalação)
-- [Contribuição](#contribuição)
+- [Equipe](#contribuição)
 - [Contato](#contato)
 
 ## Funcionalidades :bulb:
