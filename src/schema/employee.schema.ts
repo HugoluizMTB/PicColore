@@ -4,8 +4,8 @@ import Transactions from "./transaction.schema";
 import Active_client from "./active_client.schema";
 import Log from "./log.schema";
 
-const User = sequelize.define(
-  "user",
+const Employee = sequelize.define(
+  "employee",
   {
     id: {
       type: DataTypes.UUID,
@@ -67,20 +67,20 @@ const User = sequelize.define(
   }
 );
 
-User.hasMany(Transactions, {
-  foreignKey: "user_id",
+Employee.hasMany(Transactions, {
+  foreignKey: "employee_id",
 });
 
-User.hasMany(Active_client, {
-  foreignKey: "user_id",
+Employee.hasMany(Active_client, {
+  foreignKey: "employee_id",
 });
 
-User.hasMany(Log, {
-  foreignKey: "user_id_entry",
+Employee.hasMany(Log, {
+  foreignKey: "employee_id_entry",
 });
 
-User.hasMany(Log, {
-  foreignKey: "user_id_closing",
+Employee.hasMany(Log, {
+  foreignKey: "employee_id_closing",
 });
 
-export default User;
+export default Employee;

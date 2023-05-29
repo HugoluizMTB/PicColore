@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { userRouter } from "./user.routes";
+import { employeeRouter } from "./employee.routes";
 import { transactionRouter } from "./transaction.routes";
 import { logRouter } from "./log.routes";
 import { eventRouter } from "./event.routes";
@@ -11,7 +11,7 @@ import { authRouter } from "./auth.routes";
 const routers = Router();
 
 routers.use(
-  userRouter,
+  employeeRouter,
   transactionRouter,
   logRouter,
   eventRouter,

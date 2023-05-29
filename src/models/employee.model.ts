@@ -2,7 +2,7 @@ import { Expose } from "class-transformer";
 import { IsString, IsNotEmpty, IsEmail } from "class-validator";
 import { Messages } from "./messages.model";
 
-export class UserModel {
+export class EmployeeModel {
   id: string;
   email: string;
   password: string;

@@ -5,11 +5,11 @@ import { ClientService } from "../service/index.service";
 const createActiveClient = async (req: Request, res: Response) => {
     try {
       const body = req.body
-      const { user_id, client_id, event_id } = body
+      const { employee_id, client_id, event_id } = body
       const checkIfClientIsActive = await ClientService.checkIfClientIsActive(client_id)
       if (!checkIfClientIsActive) {
         const createActiveClient = await Active_client.create({ 
-          user_id,
+          employee_id,
           client_id,
           event_id
          })

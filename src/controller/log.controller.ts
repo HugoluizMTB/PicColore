@@ -4,12 +4,12 @@ import { Request, Response } from "express";
 const createLog = async (req: Request, res: Response) => {
   try {
     const body = req.body;
-    const { is_event_open, event_id, user_id_entry, user_id_closing } = body;
+    const { is_event_open, event_id, employee_id_entry, employee_id_closing } = body;
     const createdLog = await Log.create({
         is_event_open,
         event_id,
-        user_id_entry, 
-        user_id_closing
+        employee_id_entry, 
+        employee_id_closing
     });
     res.status(201).send({ createdLog });
   } catch (error) {
@@ -35,12 +35,12 @@ const getAllLogs = async (req: Request, res: Response) => {
 const updateLog = async (req: Request, res: Response) => {
   try {
     const body = req.body;
-    const { log_id, is_event_open, event_id, user_id_entry, user_id_closing } = body;
+    const { log_id, is_event_open, event_id, employee_id_entry, employee_id_closing } = body;
     const updateLog = await Log.update({
         is_event_open,
         event_id,
-        user_id_entry, 
-        user_id_closing
+        employee_id_entry, 
+        employee_id_closing
     }, { where: { log_id } });
     const updatedLog = await Log.findOne({ where: { log_id } })
     res.status(200).send({ updatedLog });
