@@ -8,72 +8,88 @@ import User from "./user.schema";
 const Event = sequelize.define(
   "event",
   {
-    event_id: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false,
       unique: true,
+      comment: "Id do Evento"
     },
-    event_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
+      comment: "Nome do evento"
     },
-    event_address: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
+      comment: "Endereço do evento"
     },
-    event_status: {
+    status: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      comment: "Se o evento encontra-se aberto ou fechado no momento"
     },
-    event_is_freetime_active: {
+    is_freetime_active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      comment: "Se a precificação do tipo tempo livre está ativa no evento"
     },
-    event_freetime_price: {
+    freetime_price: {
       type: DataTypes.FLOAT,
       allowNull: true,
+      comment: "Preço do tempo livre"
     },
-    event_courtesy: {
+    courtesy: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      comment: "Se a precificação do tipo tempo livre está ativa no evento"
     },
-    event_price_1: {
+    price_1: {
       type: DataTypes.FLOAT,
       allowNull: true,
+      comment: "Preço 1 do evento"
     },
-    event_time_1: {
+    time_1: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      comment: "Tempo em minutos do preço 1 do evento"
     },
-    event_price_2: {
+    price_2: {
       type: DataTypes.FLOAT,
       allowNull: true,
+      comment: "Preço 2 do evento"
     },
-    event_time_2: {
+    time_2: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      comment: "Tempo em minutos do preço 2 do evento"
     },
-    event_price_3: {
+    price_3: {
       type: DataTypes.FLOAT,
       allowNull: true,
+      comment: "Preço 3 do evento"
     },
-    event_time_3: {
+    time_3: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      comment: "Tempo em minutos do preço 3 do evento"
     },
-    event_price_4: {
+    price_4: {
       type: DataTypes.FLOAT,
       allowNull: true,
+      comment: "Preço 4 do evento"
     },
-    event_time_4: {
+    time_4: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      comment: "Tempo em minutos do preço 4 do evento"
     },
-    event_additional_minute: {
+    additional_minute: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      comment: "Preço do minuto adicional caso o tempo seja excedido"
     },
   },
   {
