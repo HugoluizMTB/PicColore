@@ -1,28 +1,76 @@
 import Client from "../schema/client.schema";
+import User from "src/schema/user.schema";
+import { AppError } from "src/models/errors.model";
+import { HttpStatus } from "src/utils/http-status";
+import { ClientUpdateDto } from "src/dtos/client.dto";
 
-export const createClientService = async (client: any) => {
-  const validateCpf = await Client.findOne({ where: client });
-  if (validateCpf) {
-    return { msg: "Cpf já cadastrado" }
-  };
-  
-  const createClient = await Client.create(client);
-  return createClient;
+const validateIfClientExists = async (id: string) => {
+  const client = Client.findByPk(id);
+  if (!client) throw new AppError("Cliente não encontrado.", HttpStatus.OK);
+  return client;
 };
 
-export const getClientByCPFService = async (client: any) => {
-  const getClient = await Client.findOne({ where: client });
-  if (!getClient) {
-    return { msg: "Cliente não encontrado" }
+export const createClientService = async (body: any) => {
+  const personRegistretionNumberAlreadyExists = await Client.findOne({
+    where: { person_registration_number: body.person_registration_number },
+  });
+
+  if (personRegistretionNumberAlreadyExists) {
+    throw new AppError(
+      "Cliente com CPF Já cadastrado.",
+      HttpStatus.BAD_REQUEST
+    );
   }
-  return getClient;
+
+  return await Client.create(body);
 };
 
-export const destroyClientByCpfService = async (client: any) => {
-  const findClient = await Client.findOne({ where: client });
-  if (!findClient) {
-    return { msg: "Cliente não encontrado" }
+export const updateClientService = async (
+  id: string,
+  client: ClientUpdateDto
+) => {
+  const clientUpdated = await validateIfClientExists(id);
+  if (!clientUpdated) {
+    throw new AppError("Cliente não encontrado.", HttpStatus.OK);
   }
-  const destroyClient = await Client.destroy({ where: client });
-  return { msg: "Cliente excluído" };
+
+  clientUpdated.set(client);
+  if (!clientUpdated.changed()) {
+    throw new AppError(
+      "Nenhuma atualização foi realizada.",
+      HttpStatus.BAD_REQUEST
+    );
+  }
+  return await clientUpdated.update(client);
+};
+
+export const getClientByIdService = async (id: string, auth: string) => {
+  const userGetPermission = await User.findByPk(auth);
+  const { role } = userGetPermission.dataValues;
+
+  if (role != "Admin" || role != "Supervisor") {
+    throw new AppError(
+      "Apenas administradores/supervisores podem visualizar dados dos clientes.",
+      HttpStatus.UNAUTHORIZED
+    );
+  }
+  return await validateIfClientExists(id);
+};
+
+export const getAllClientsService = async (auth: string) => {
+  const userGetPermission = await User.findByPk(auth);
+  const { role } = userGetPermission.dataValues;
+
+  if (role != "Admin" || role != "Supervisor") {
+    throw new AppError(
+      "Apenas administradores/supervisores podem visualizar dados dos clientes.",
+      HttpStatus.UNAUTHORIZED
+    );
+  }
+  return await Client.findAll();
+};
+
+export const deleteClientByIdService = async (id: string) => {
+  await validateIfClientExists(id);
+  return await Client.destroy({ where: { id } });
 };
