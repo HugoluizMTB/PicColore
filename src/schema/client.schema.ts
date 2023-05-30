@@ -1,45 +1,40 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/database/connection";
-import Children from "./child.schema";
+import Sequelize from "sequelize";
+import database from "../config/database/connection";
 import Active_client from "./active_client.schema";
 import Transactions from "./transaction.schema";
 
-const Client = sequelize.define(
-  "client",
+const Client = database.define(
+  "clients",
   {
-    client_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       allowNull: false,
       unique: true,
     },
-    client_fullname: {
-      type: DataTypes.STRING,
+    name: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    phone_number: {
+      type: Sequelize.STRING(13),
       allowNull: false,
     },
-    client_cpf: {
-      type: DataTypes.CHAR(11),
-      allowNull: false,
-      unique: true,
+    person_registration_number: {
+      type: Sequelize.STRING(13),
+      allowNull: true,
     },
-    client_phone_number: {
-      type: DataTypes.STRING(13),
-      allowNull: false,
-    },
-    client_visits: {
-      type: DataTypes.INTEGER,
+    visits: {
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
   },
   {
     underscored: true,
+    freezeTableName: true,
   }
 );
-
-Client.hasMany(Children, {
-  foreignKey: "client_id",
-});
 
 Client.hasOne(Active_client, {
   foreignKey: "client_id",
