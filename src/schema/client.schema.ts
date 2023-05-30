@@ -10,7 +10,6 @@ const Client = database.define(
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
-      allowNull: false,
       unique: true,
     },
     name: {
@@ -19,10 +18,13 @@ const Client = database.define(
     },
     phone_number: {
       type: Sequelize.STRING(13),
+      validate: {
+        is: /^\(?\d{2}\)?\s?\d{5}-?\d{4}$/i,
+      },
       allowNull: false,
     },
     person_registration_number: {
-      type: Sequelize.STRING(13),
+      type: Sequelize.STRING(11),
       allowNull: true,
     },
     visits: {

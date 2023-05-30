@@ -3,6 +3,7 @@ import User from "src/schema/user.schema";
 import { AppError } from "src/models/errors.model";
 import { HttpStatus } from "src/utils/http-status";
 import { ClientUpdateDto } from "src/dtos/client.dto";
+import { cpfIsValid } from "src/utils/utilities";
 
 const validateIfClientExists = async (id: string) => {
   const client = Client.findByPk(id);
@@ -11,6 +12,10 @@ const validateIfClientExists = async (id: string) => {
 };
 
 export const createClientService = async (body: any) => {
+  if (!cpfIsValid(body.person_registration_number)) {
+    throw new AppError("CPF informado é inválido", HttpStatus.BAD_REQUEST);
+  }
+
   const personRegistretionNumberAlreadyExists = await Client.findOne({
     where: { person_registration_number: body.person_registration_number },
   });
