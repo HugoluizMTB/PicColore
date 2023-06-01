@@ -6,8 +6,8 @@ import { ClientUpdateDto } from "src/dtos/client.dto";
 import { cpfIsValid } from "src/utils/utilities";
 
 const validateIfClientExists = async (id: string) => {
-  const client = Client.findByPk(id);
-  if (!client) throw new AppError("Cliente não encontrado.", HttpStatus.OK);
+  const client = await Client.findByPk(id);
+  if (!client) throw new AppError("Cliente não encontrado.", HttpStatus.BAD_REQUEST);
   return client;
 };
 
@@ -26,7 +26,7 @@ export const createClientService = async (body: any) => {
       HttpStatus.BAD_REQUEST
     );
   }
-
+  body.visits = 1;
   return await Client.create(body);
 };
 
@@ -53,7 +53,7 @@ export const getClientByIdService = async (id: string, auth: string) => {
   const userGetPermission = await User.findByPk(auth);
   const { role } = userGetPermission.dataValues;
 
-  if (role != "Admin" || role != "Supervisor") {
+  if (role != "Admin" && role != "Supervisor") {
     throw new AppError(
       "Apenas administradores/supervisores podem visualizar dados dos clientes.",
       HttpStatus.UNAUTHORIZED
@@ -66,7 +66,7 @@ export const getAllClientsService = async (auth: string) => {
   const userGetPermission = await User.findByPk(auth);
   const { role } = userGetPermission.dataValues;
 
-  if (role != "Admin" || role != "Supervisor") {
+  if (role != "Admin" && role != "Supervisor") {
     throw new AppError(
       "Apenas administradores/supervisores podem visualizar dados dos clientes.",
       HttpStatus.UNAUTHORIZED

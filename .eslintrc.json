@@ -1,14 +1,20 @@
 {
-  "env": {
-    "es2020": true,
-    "node": true
-  },
-  "extends": ["standard"],
+  "root": true,
   "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parserOptions": {
-    "ecmaVersion": 11,
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    // Adicione regras personalizadas aqui
+    "@typescript-eslint/no-explicit-any": "off", // Permitir uso do tipo 'any'
+    "@typescript-eslint/explicit-module-boundary-types": "off", // Permitir inferência de tipos no retorno de funções
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ], // Exigir utilização de todas as variáveis, exceto aquelas prefixadas com '_'
+    "no-console": "warn" // Avisar sobre o uso de console.log e console.error
+  }
 }

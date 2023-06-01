@@ -11,3 +11,6 @@
 
 #.EnvFiles
 .env
+
+#Desks
+node_modules

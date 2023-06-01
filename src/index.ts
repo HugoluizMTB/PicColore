@@ -15,7 +15,7 @@ app.use(express.json());
 app.use("/api", routers);
 app.use(cors());
 
-app.use('*', (req: Request, res: Response) => {
+app.use('*', () => {
   throw new AppError('Rota não encontrada', HttpStatus.NOT_FOUND)
 })
 
@@ -29,7 +29,7 @@ app.use((err: ErrorRequestHandler | Error | AppError, req: Request, res: Respons
     data: isAppError ? err.data : isError ? err.stack : undefined
   }
 
-  res.status(objError.status).json(objError)
+  res.status(objError.status).json(objError.message)
 })
 
 app.listen(port);
