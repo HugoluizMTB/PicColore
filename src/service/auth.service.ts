@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import User from "../schema/user.schema";
@@ -5,15 +6,17 @@ import * as argon from "argon2";
 import * as dotenv from "dotenv";
 import { AuthModel } from "../models/auth.model";
 import { UserModel } from "../models/user.model";
-import { UserUpdateDto } from "src/dtos/user.dto";
 
 dotenv.config();
 const EXPIRATION_TIME = Number(process.env.EXPIRATION_TIME);
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-export interface CustomRequest extends Request {
-  token: string | JwtPayload;
+interface JwtPayloadObject {
+  type: "object";
+  id: string;
 }
+
+type JwtPayload = JwtPayloadObject;
 
 export const authenticate = async (
   req: Request,
@@ -21,14 +24,13 @@ export const authenticate = async (
   next: NextFunction
 ) => {
   try {
-    let token: any;
-    token = req.headers["access_token"];
+    const token = req.headers["access_token"];
 
     if (!token) {
       return res.status(401).json("Token não identificado.");
     }
 
-    jwt.verify(token, process.env.JWT_SECRET_KEY as string, (error, decoded) => {
+    jwt.verify(token as string, JWT_SECRET_KEY, (error, decoded: JwtPayload) => {
       if (error) {
         return res.status(401).json("Token inválido.");
       }

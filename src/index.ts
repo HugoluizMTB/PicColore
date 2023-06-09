@@ -29,7 +29,7 @@ app.use((err: ErrorRequestHandler | Error | AppError, req: Request, res: Respons
     data: isAppError ? err.data : isError ? err.stack : undefined
   }
 
-  res.status(objError.status).json(objError.message)
+  res.status(objError.status).json({error: objError.message})
 })
 
 app.listen(port);
