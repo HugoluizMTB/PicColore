@@ -22,7 +22,7 @@ const Transaction = sequelize.define(
       type: DataTypes.UUID,
       allowNull: false,
     },
-    user_id: {
+    employee_id: {
       type: DataTypes.UUID,
       allowNull: false,
     },

@@ -4,7 +4,7 @@ import * as ClientController from "./client.controller";
 import * as EventController from "./event.controller";
 import * as LogController from "./log.controller";
 import * as TransactionController from "./transaction.controller";
-import * as UserController from "./user.controller";
+import * as EmployeeController from "./employee.controller";
 import * as AuthController from "./auth.controller";
 
 export {
@@ -14,6 +14,6 @@ export {
   EventController,
   LogController,
   TransactionController,
-  UserController,
+  EmployeeController,
   AuthController,
 };

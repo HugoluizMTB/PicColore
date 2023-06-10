@@ -11,7 +11,7 @@ const Active_client = sequelize.define(
       allowNull: false,
       unique: true,
     },
-    user_id: {
+    employee_id: {
       type: DataTypes.UUID,
       allowNull: false,
     },

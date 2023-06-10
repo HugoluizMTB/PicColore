@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import User from "../schema/user.schema";
+import Employee from "../schema/employee.schema";
 import * as argon from "argon2";
 import * as dotenv from "dotenv";
 import { AuthModel } from "../models/auth.model";
-import { UserModel } from "../models/user.model";
-import { UserUpdateDto } from "src/dtos/user.dto";
+import { EmployeeModel } from "../models/employee.model";
+import { EmployeeUpdateDto } from "src/dtos/employee.dto";
 
 dotenv.config();
 const EXPIRATION_TIME = Number(process.env.EXPIRATION_TIME);
@@ -52,11 +52,11 @@ const generateTokenJWT = async (
   return jwt.sign(payload, JWT_SECRET_KEY, { expiresIn });
 };
 
-export const validatePassword = async (user: UserModel, password: string) => {
+export const validatePassword = async (employee: EmployeeModel, password: string) => {
   try {
     let validate = false;
-    if (user) {
-      validate = await argon.verify(user.password, password + user.salt);
+    if (employee) {
+      validate = await argon.verify(employee.password, password + employee.salt);
     }
 
     if (!validate) throw new Error("Email ou senha incorreta");
@@ -67,23 +67,23 @@ export const validatePassword = async (user: UserModel, password: string) => {
 
 export const loginService = async (body: AuthModel) => {
   try {
-    const user: any = await User.findOne({ where: { email: body.email } });
+    const employee: any = await Employee.findOne({ where: { email: body.email } });
 
-    if (!user) {
+    if (!employee) {
       throw new Error("Usuário não encontrado com esse e-mail.");
     }
 
-    await validatePassword(user, body.password);
+    await validatePassword(employee, body.password);
     const token = await generateTokenJWT({
-      email: user.email,
-      id: user.id,
-      username: user.name,
+      email: employee.email,
+      id: employee.id,
+      employeename: employee.name,
     });
 
     return {
-      username: user.name,
-      role: user.role,
-      id: user.id,
+      employeename: employee.name,
+      role: employee.role,
+      id: employee.id,
       token: token,
       logged_in: true,
     };

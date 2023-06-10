@@ -3,7 +3,7 @@ import sequelize from "../config/database/connection";
 import Active_client from "./active_client.schema";
 import Transactions from "./transaction.schema";
 import Log from "./log.schema";
-import User from "./user.schema";
+import Employee from "./employee.schema";
 
 const Event = sequelize.define(
   "event",
@@ -93,7 +93,7 @@ Event.hasMany(Log, {
   foreignKey: "event_id",
 });
 
-Event.hasMany(User, {
+Event.hasMany(Employee, {
   foreignKey: "event_id",
 });
 export default Event;

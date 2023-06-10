@@ -4,11 +4,11 @@ import { Request, Response } from "express";
 const createTransaction = async (req: Request, res: Response) => {
   try {
     const body = req.body;
-    const { transaction_value, payment_method, user_id, client_id, event_id } = body;
+    const { transaction_value, payment_method, employee_id, client_id, event_id } = body;
     const createTransaction = await Transaction.create({
       transaction_value,
       payment_method,
-      user_id,
+      employee_id,
       client_id,
       event_id,
     });
